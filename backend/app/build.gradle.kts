@@ -37,6 +37,11 @@ tasks.jar {
     enabled = false
 }
 
+configurations.all {
+    exclude(group = "com.ritense.valtimoplugins", module = "freemarker")
+}
+
+
 apply(from = "../../gradle/environment.gradle.kts")
 val configureEnvironment = extra["configureEnvironment"] as (task: ProcessForkOptions) -> Unit
 
