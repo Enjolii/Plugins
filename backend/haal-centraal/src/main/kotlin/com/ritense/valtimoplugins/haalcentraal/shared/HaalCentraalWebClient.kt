@@ -1,6 +1,6 @@
-package com.ritense.valtimo.haalcentraal.shared
+package com.ritense.valtimoplugins.haalcentraal.shared
 
-import com.ritense.valtimo.haalcentraal.shared.exception.HaalCentraalNotFoundException
+import com.ritense.valtimoplugins.haalcentraal.shared.exception.HaalCentraalNotFoundException
 import com.ritense.valtimoplugins.haalcentraalauth.plugin.HaalCentraalAuthPlugin
 import org.springframework.http.client.reactive.ReactorClientHttpConnector
 import org.springframework.web.reactive.function.BodyInserters

@@ -7,8 +7,8 @@ import com.ritense.plugin.annotation.PluginAction
 import com.ritense.plugin.annotation.PluginActionProperty
 import com.ritense.plugin.annotation.PluginProperty
 import com.ritense.processlink.domain.ActivityTypeWithEventName
-import com.ritense.valtimo.haalcentraal.brp.exception.HcBewoningenNotFoundException
-import com.ritense.valtimo.haalcentraal.brp.model.BewoningenRequest
+import com.ritense.valtimoplugins.haalcentraal.brp.exception.HcBewoningenNotFoundException
+import com.ritense.valtimoplugins.haalcentraal.brp.model.BewoningenRequest
 import com.ritense.valtimoplugins.haalcentraal.brp.service.HaalCentraalBrpService
 import com.ritense.valtimoplugins.haalcentraalauth.plugin.HaalCentraalAuthPlugin
 import mu.KotlinLogging

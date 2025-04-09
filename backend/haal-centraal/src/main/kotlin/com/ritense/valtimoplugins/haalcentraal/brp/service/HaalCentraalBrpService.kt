@@ -1,8 +1,8 @@
 package com.ritense.valtimoplugins.haalcentraal.brp.service
 
-import com.ritense.valtimo.haalcentraal.brp.client.HcBrpClient
-import com.ritense.valtimo.haalcentraal.brp.model.BewoningDto
-import com.ritense.valtimo.haalcentraal.brp.model.BewoningenRequest
+import com.ritense.valtimoplugins.haalcentraal.brp.client.HcBrpClient
+import com.ritense.valtimoplugins.haalcentraal.brp.model.BewoningDto
+import com.ritense.valtimoplugins.haalcentraal.brp.model.BewoningenRequest
 import com.ritense.valtimoplugins.haalcentraalauth.plugin.HaalCentraalAuthPlugin
 import mu.KotlinLogging
 import java.net.URI
