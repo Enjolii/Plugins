@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" typeLanguage="http://www.w3.org/2001/XMLSchema">
+    
+  <bpmn:process id="Process_find" isClosed="false" isExecutable="true" name="Object Management Find" processType="None">
+        
+    <bpmn:startEvent id="StartEvent_1" isInterrupting="true" name="Start" parallelMultiple="false">
+            
+      <bpmn:outgoing>Flow_0lgmak0</bpmn:outgoing>
+          
+    </bpmn:startEvent>
+        
+    <bpmn:sequenceFlow id="Flow_0lgmak0" sourceRef="StartEvent_1" targetRef="Activity_1m4wp8a"/>
+        
+    <bpmn:serviceTask camunda:expression="${true}" completionQuantity="1" id="Activity_1m4wp8a" implementation="##WebService" isForCompensation="false" name="Find objects" startQuantity="1">
+            
+      <bpmn:incoming>Flow_0lgmak0</bpmn:incoming>
+            
+      <bpmn:outgoing>Flow_09sdv28</bpmn:outgoing>
+          
+    </bpmn:serviceTask>
+        
+    <bpmn:sequenceFlow id="Flow_09sdv28" sourceRef="Activity_1m4wp8a" targetRef="Activity_0nerex0"/>
+        
+    <bpmn:endEvent id="Event_1n0ds48">
+            
+      <bpmn:incoming>Flow_11lq3f4</bpmn:incoming>
+          
+    </bpmn:endEvent>
+        
+    <bpmn:sequenceFlow id="Flow_11lq3f4" sourceRef="Activity_0nerex0" targetRef="Event_1n0ds48"/>
+        
+    <bpmn:serviceTask camunda:expression="${valueResolverDelegateService.handleValue(execution, 'doc:results', execution.getVariable('results'))}" completionQuantity="1" id="Activity_0nerex0" implementation="##WebService" isForCompensation="false" name="Pv: to Doc:" startQuantity="1">
+            
+      <bpmn:incoming>Flow_09sdv28</bpmn:incoming>
+            
+      <bpmn:outgoing>Flow_11lq3f4</bpmn:outgoing>
+          
+    </bpmn:serviceTask>
+      
+  </bpmn:process>
+    
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+        
+    <bpmndi:BPMNPlane bpmnElement="Process_find" id="BPMNPlane_1">
+            
+      <bpmndi:BPMNEdge bpmnElement="Flow_0lgmak0" id="Flow_0lgmak0_di">
+                
+        <di:waypoint x="209" y="120"/>
+                
+        <di:waypoint x="260" y="120"/>
+              
+      </bpmndi:BPMNEdge>
+            
+      <bpmndi:BPMNEdge bpmnElement="Flow_09sdv28" id="Flow_09sdv28_di">
+                
+        <di:waypoint x="360" y="120"/>
+                
+        <di:waypoint x="420" y="120"/>
+              
+      </bpmndi:BPMNEdge>
+            
+      <bpmndi:BPMNEdge bpmnElement="Flow_11lq3f4" id="Flow_11lq3f4_di">
+                
+        <di:waypoint x="520" y="120"/>
+                
+        <di:waypoint x="582" y="120"/>
+              
+      </bpmndi:BPMNEdge>
+            
+      <bpmndi:BPMNShape bpmnElement="StartEvent_1" id="_BPMNShape_StartEvent_2">
+                
+        <dc:Bounds height="36" width="36" x="173" y="102"/>
+                
+        <bpmndi:BPMNLabel>
+                    
+          <dc:Bounds height="14" width="24" x="179" y="145"/>
+                  
+        </bpmndi:BPMNLabel>
+              
+      </bpmndi:BPMNShape>
+            
+      <bpmndi:BPMNShape bpmnElement="Activity_1m4wp8a" id="Activity_0kla0zo_di">
+                
+        <dc:Bounds height="80" width="100" x="260" y="80"/>
+              
+      </bpmndi:BPMNShape>
+            
+      <bpmndi:BPMNShape bpmnElement="Event_1n0ds48" id="Event_1n0ds48_di">
+                
+        <dc:Bounds height="36" width="36" x="582" y="102"/>
+              
+      </bpmndi:BPMNShape>
+            
+      <bpmndi:BPMNShape bpmnElement="Activity_0nerex0" id="Activity_0usk443_di">
+                
+        <dc:Bounds height="80" width="100" x="420" y="80"/>
+              
+      </bpmndi:BPMNShape>
+          
+    </bpmndi:BPMNPlane>
+      
+  </bpmndi:BPMNDiagram>
+  
+</bpmn:definitions>

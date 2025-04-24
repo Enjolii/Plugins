@@ -26,6 +26,7 @@ import com.ritense.objectmanagement.repository.ObjectManagementRepository
 import com.ritense.objectmanagement.service.ObjectManagementFacade
 import com.ritense.objecttypenapi.ObjecttypenApiPlugin
 import com.ritense.plugin.service.PluginService
+import org.springframework.data.domain.Pageable
 import java.net.URI
 import java.time.LocalDate
 import java.util.*
@@ -98,6 +99,25 @@ class ObjectManagementCrudService(
         } catch (e: Exception) {
             throw RuntimeException("Failed to fetch objects for objectManagement: $objectManagementTitle", e)
         }
+    }
+
+    fun getObjectsByObjectTypeIdWithSearchParams(
+        objectManagementId: UUID,
+        searchString: String,
+        ordering: String?,
+        pageable: Pageable
+    ): ObjectsList {
+        val objectManagement = getObjectManagement(objectManagementId)
+        val objectenApiPlugin = getObjectenApiPlugin(objectManagement.objectenApiPluginConfigurationId)
+        val objecttypenApiPlugin = getObjecttypenApiPlugin(objectManagement.objecttypenApiPluginConfigurationId)
+
+        return objectenApiPlugin.getObjectsByObjectTypeIdWithSearchParams(
+            objecttypenApiPlugin.getObjectTypeUrlById(objectManagement.objecttypeId),
+            objectManagement.objecttypeId,
+            searchString,
+            ordering,
+            pageable
+        )
     }
 
     private fun getObjectenApiPlugin(objectenApiPluginConfigurationId: UUID): ObjectenApiPlugin {

@@ -23,6 +23,7 @@ import {CreateObjectConfigurationComponent} from "./components/create-object/cre
 import {GetObjectsConfigurationComponent} from "./components/get-objects/get-objects-configuration.component";
 import {DeleteObjectConfigurationComponent} from "./components/delete-object/delete-object-configuration.component";
 import {UpdateObjectConfigurationComponent} from "./components/update-object/update-object-configuration.component";
+import {FindObjectsConfigurationComponent} from "./components/find-objects/find-objects-configuration.component";
 
 const objectManagementPluginSpecification: PluginSpecification = {
     pluginId: 'object-management',
@@ -33,6 +34,7 @@ const objectManagementPluginSpecification: PluginSpecification = {
         'get-objects-unpaged': GetObjectsConfigurationComponent,
         'delete-object': DeleteObjectConfigurationComponent,
         'update-object': UpdateObjectConfigurationComponent,
+        'find-objects': FindObjectsConfigurationComponent,
     },
     pluginTranslations: {
         nl: {
@@ -46,6 +48,7 @@ const objectManagementPluginSpecification: PluginSpecification = {
             'delete-object': "Object verwijderen",
             'create-object': "Object aanmaken",
             'update-object': "Object bijwerken",
+            'find-objects': "Objecten vinden",
             objectManagementConfigurationIdTooltip: 'De id van de geconfigureerde object management instantie',
             listOfObjectProcessVariableName: 'Procesvariabele naam voor de objectlijst',
             listOfObjectProcessVariableNameTooltip: 'Bepaalt de procesvariabele naam die wordt gebruikt voor het opslaan van de objectlijst',
@@ -62,6 +65,7 @@ const objectManagementPluginSpecification: PluginSpecification = {
             'delete-object': "Delete object",
             'create-object': "Create object",
             'update-object': "Update object",
+            'find-objects': "Find objects",
             objectManagementConfigurationIdTooltip: 'The id of the configured object management instance',
             listOfObjectProcessVariableName: 'Process variable name for the object list',
             listOfObjectProcessVariableNameTooltip: 'Defines the process variable name used for storing the object list',

@@ -25,6 +25,7 @@ import {CreateObjectConfigurationComponent} from "./components/create-object/cre
 import {GetObjectsConfigurationComponent} from "./components/get-objects/get-objects-configuration.component";
 import {DeleteObjectConfigurationComponent} from "./components/delete-object/delete-object-configuration.component";
 import {UpdateObjectConfigurationComponent} from "./components/update-object/update-object-configuration.component";
+import {FindObjectsConfigurationComponent} from "./components/find-objects/find-objects-configuration.component";
 
 @NgModule({
     declarations: [
@@ -33,6 +34,7 @@ import {UpdateObjectConfigurationComponent} from "./components/update-object/upd
         GetObjectsConfigurationComponent,
         DeleteObjectConfigurationComponent,
         UpdateObjectConfigurationComponent,
+        FindObjectsConfigurationComponent
     ],
     imports: [CommonModule, PluginTranslatePipeModule, FormModule, InputModule, ParagraphModule, CarbonMultiInputModule],
     exports: [
@@ -41,6 +43,7 @@ import {UpdateObjectConfigurationComponent} from "./components/update-object/upd
         GetObjectsConfigurationComponent,
         DeleteObjectConfigurationComponent,
         UpdateObjectConfigurationComponent,
+        FindObjectsConfigurationComponent
     ],
 })
 export class ObjectManagementPluginModule {

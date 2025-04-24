@@ -41,6 +41,19 @@
       }
     },
     {
+      "key": "results",
+      "type": "hidden",
+      "input": true,
+      "label": "results",
+      "tableView": false,
+      "attributes": {
+        "data-testid": "object-management-plugin.summary-results"
+      },
+      "properties": {
+        "sourceKey": "doc:results"
+      }
+    },
+    {
       "key": "html",
       "tag": "div",
       "type": "htmlelement",
@@ -52,8 +65,7 @@
       ],
       "input": false,
       "label": "HTML",
-      "content": "<h4>Boom information</h4>\n<section>\n    <dl class=\"row mb-0\">\n        <dd class=\"col-6\">Type</dd>\n        <dt class=\"col-6\">{{{ data.type || '-'}}}</dt>\n    </dl>\n        <dl class=\"row mb-0\">\n        <dd class=\"col-6\">Leeftijd</dd>\n        <dt class=\"col-6\">{{{ data.leeftijd || '-'}}}</dt>\n    </dl>\n\n    <dl class=\"row mb-0\">\n        <dd class=\"col-6\">Boomhoogte actueel</dd>\n        <dt class=\"col-6\">{{{ data.boomhoogteactueel || '-'}}}</dt>\n    </dl>\n\n </section>",
-      "tableView": false,
+      "content": "<h3>Boom information</h3><br>\n<section><h5>\n    <dl class=\"row mb-0\">\n        <dd class=\"col-6\">{{data.type.length > 0 ? 'Type' : '' }}</dd>\n        <dt class=\"col-6\">{{data.type.length > 0 ? (data.type || '-') :  '' }}</dt>\n    </dl>\n        <dl class=\"row mb-0\">\n        <dd class=\"col-6\">{{data.type.length > 0 ? 'Leeftijd' : '' }}</dd>\n        <dt class=\"col-6\">{{data.type.length > 0 ? (data.leeftijd || '-') :  '' }}</dt>\n    </dl>\n\n    <dl class=\"row mb-0\">\n        <dd class=\"col-6\">{{data.type.length > 0 ? 'Boomhoogte actueel' : '' }}</dd>\n        <dt class=\"col-6\">{{data.type.length > 0 ? (data.boomhoogteactueel || '-') :  '' }}</dt>\n    </dl>\n\n  <dl class=\"row mb-0\">\n        <dd class=\"col-6\">{{data.results.length > 0 ? 'Find Resultaten' : '' }}</dd>\n        <dt class=\"col-6\">{{data.results.length > 0 ? (data.results.length || '-') :  '' }}</dt>\n    </dl>\n\n</h5></section>",
       "refreshOnChange": false
     }
   ]

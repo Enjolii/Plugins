@@ -3,5 +3,10 @@
     "processDefinitionKey": "Process_CUD",
     "canInitializeDocument": true,
     "startableByUser": false
+  },
+  {
+    "processDefinitionKey": "Process_find",
+    "canInitializeDocument": true,
+    "startableByUser": false
   }
 ]

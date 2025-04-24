@@ -44,7 +44,6 @@ interface UpdateObjectConfig {
 
 interface FindObjectsConfig {
     objectManagementConfigurationId: string;
-    objectType: string;
     searchString: string;
     ordering: string;
     pagenumber: string;
