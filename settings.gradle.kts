@@ -16,6 +16,7 @@ include(
     "backend:smtpmail",
     "backend:spotler",
     "backend:suwinet",
+    "backend:token-authentication",
     "backend:xential",
     "backend:hugging-face",
     "backend:kvk-handelsregister",
@@ -51,3 +52,5 @@ pluginManagement {
         id("com.avast.gradle.docker-compose") version dockerComposePluginVersion
     }
 }
+
+include("backend:open-product")

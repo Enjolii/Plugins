@@ -91,12 +91,14 @@ import {
 } from '@valtimo-plugins/freemarker';
 import {NotifyNlPluginModule, notifyNlPluginSpecification} from '@valtimo-plugins/notify-nl';
 import {ObjectManagementPluginModule, objectManagementPluginSpecification} from '@valtimo-plugins/object-management';
+import {OpenProductPluginModule, openProductPluginSpecification} from '@valtimo-plugins/open-product';
 import {PublictaskPluginModule, publictaskPluginSpecification} from '@valtimo-plugins/publictask';
 import {RotterdamOracleEbsPluginModule, rotterdamOracleEbsPluginSpecification} from "@valtimo-plugins/rotterdam-oracle-ebs";
 import {SlackPluginModule, slackPluginSpecification} from '@valtimo-plugins/slack';
 import {SmtpMailPluginModule, smtpmailPluginSpecification} from '@valtimo-plugins/smtpmail';
 import {SpotlerPluginModule, spotlerPluginSpecification} from '@valtimo-plugins/spotler';
 import {SuwinetPluginModule, suwinetPluginSpecification} from '@valtimo-plugins/suwinet';
+import {TokenAuthenticationPluginModule, tokenAuthenticationPluginSpecification} from "@valtimo-plugins/token-authentication";
 import {XentialPluginModule, XentialPluginSpecification} from '@valtimo-plugins/xential';
 import {MtlsSslcontextPluginModule,mTlsSslcontextPluginSpecification} from '@valtimo-plugins/mtls-sslcontext';
 import {HuggingFacePluginModule, huggingFacePluginSpecification} from "@valtimo-plugins/hugging-face";
@@ -128,12 +130,14 @@ export function tabsFactory() {
         PublictaskPluginModule,
         NotifyNlPluginModule,
         ObjectManagementPluginModule,
+        OpenProductPluginModule,
         MtlsSslcontextPluginModule,
         SlackPluginModule,
         HuggingFacePluginModule,
         SmtpMailPluginModule,
         SpotlerPluginModule,
         SuwinetPluginModule,
+        TokenAuthenticationPluginModule,
         XentialPluginModule,
         HttpClientModule,
         CommonModule,
@@ -202,6 +206,7 @@ export function tabsFactory() {
             mailTemplatePluginSpecification,
             notifyNlPluginSpecification,
             objectManagementPluginSpecification,
+            openProductPluginSpecification,
             objectTokenAuthenticationPluginSpecification,
             objectenApiPluginSpecification,
             objecttypenApiPluginSpecification,
@@ -213,6 +218,7 @@ export function tabsFactory() {
             spotlerPluginSpecification,
             suwinetPluginSpecification,
             textTemplatePluginSpecification,
+            tokenAuthenticationPluginSpecification,
             mTlsSslcontextPluginSpecification,
             XentialPluginSpecification,
             kvkPluginSpecification
