@@ -1,0 +1,12 @@
+{
+  "$id": "open-product.schema",
+  "type": "object",
+  "title": "Open Product",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "result": {
+      "Type": "string"
+    }
+  },
+  "additionalProperties": false
+}

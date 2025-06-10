@@ -1,0 +1,19 @@
+[
+  {
+    "id": "7bfd46fe-6985-4168-84bc-6b968432eb8b",
+    "title": "Open Product Authentication",
+    "pluginDefinitionKey": "tokenauthentication",
+    "properties": {
+      "token": "6841f8c681f5cf7680578caf447b76475f2f82a0"
+    }
+  },
+  {
+    "id": "72125667-5ca8-4426-b91a-b471de5983c0",
+    "title": "Open Product",
+    "pluginDefinitionKey": "openproduct",
+    "properties": {
+      "baseUrl": "http://localhost:8090/producten/api/v1",
+      "authenticationPluginConfiguration": "7bfd46fe-6985-4168-84bc-6b968432eb8b"
+    }
+  }
+]

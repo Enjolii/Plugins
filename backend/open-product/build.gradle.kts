@@ -16,6 +16,7 @@
 
 dependencies {
 
+    implementation("com.ritense.valtimo:core")
     implementation("com.ritense.valtimo:plugin-valtimo")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.19.0")

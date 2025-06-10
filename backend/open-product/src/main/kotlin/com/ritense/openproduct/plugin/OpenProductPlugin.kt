@@ -58,7 +58,7 @@ class OpenProductPlugin(
             authenticationPluginConfiguration,
             ProductRequest(
                 naam = "test1",
-                producttypeUuid = "283d59ae-66d1-41cd-a9a1-cd6ad9d21d31",
+                producttypeUuid = "9903945d-b639-49da-85ed-7305817f47ad",
                 eigenaren = listOf(
                     EigenaarRequest(
                         bsn = "111111110"
@@ -67,7 +67,7 @@ class OpenProductPlugin(
                 gepubliceerd = true,
                 prijs = "1.00",
                 frequentie = FrequentieEnum.MAANDELIJKS,
-                status = StatusEnum.GEREED,
+                status = StatusEnum.ACTIEF,
             )
         )
     }

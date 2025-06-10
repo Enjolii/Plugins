@@ -1,0 +1,7 @@
+[
+  {
+    "processDefinitionKey": "test",
+    "canInitializeDocument": true,
+    "startableByUser": false
+  }
+]
