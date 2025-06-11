@@ -50,9 +50,6 @@ class OpenProductPlugin(
         execution: DelegateExecution,
         @PluginActionProperty productNaam: String,
         @PluginActionProperty productTypeUUID: String,
-        @PluginActionProperty ownerBSN: String,
-        @PluginActionProperty published: Boolean,
-        @PluginActionProperty productPrice: String,
         @PluginActionProperty eigenaarBSN: String,
         @PluginActionProperty gepubliceerd: Boolean,
         @PluginActionProperty productPrijs: String,
@@ -63,8 +60,6 @@ class OpenProductPlugin(
 
         val freqenum = toFreqEnum(frequentie)
         val statusEnum = toStatusEnum(status)
-
-        println(eigenaarData)
 
         val resultaat = openProductClient.createProduct(
             baseUrl,

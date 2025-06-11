@@ -3,7 +3,7 @@ interface CreateProductConfig {
     productTypeUUID: string;
     ownerBSN: string;
     published: boolean;
-    productPrice: number;
+    productPrice: string;
     frequentie: string;
     status: string;
     resultPV: string;
