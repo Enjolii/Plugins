@@ -31,6 +31,31 @@ class OpenProductClient() {
         return result.body
     }
 
+    fun updateProduct(
+        baseUrl: String,
+        authenticationPlugin: TokenAuthenticationPlugin,
+        request: MutableMap<String, Any>
+    ): String? {
+        val restClient = getRestclient(baseUrl, authenticationPlugin)
+        val objectMapper = jacksonObjectMapper()
+
+        val uuid = request["uuid"] as String
+
+        val requestJson = objectMapper.writeValueAsString(request)
+
+        val response = restClient.patch()
+            .uri("/producten/$uuid")
+            .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+            .body(requestJson)
+            .retrieve()
+
+        val result = response.toEntity(String::class.java)
+            ?: throw IllegalStateException("Failed to update product")
+
+        return result.body
+    }
+
+
     fun getRestclient(baseUrl: String, authenticationPlugin: TokenAuthenticationPlugin): RestClient {
         return authenticationPlugin.applyAuth(RestClient.builder())
             .baseUrl(baseUrl)

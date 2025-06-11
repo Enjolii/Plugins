@@ -3,5 +3,10 @@
     "processDefinitionKey": "OpenProduct_Create",
     "canInitializeDocument": true,
     "startableByUser": false
+  },
+  {
+    "processDefinitionKey": "OpenProduct_Update",
+    "canInitializeDocument": true,
+    "startableByUser": false
   }
 ]

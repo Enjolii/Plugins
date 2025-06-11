@@ -59,22 +59,8 @@ class OpenProductPlugin(
         @PluginActionProperty resultPV: String,
     ) {
 
-        val freqenum = when (frequentie) {
-            "eenmalig" -> FrequentieEnum.EENMALIG
-            "jaarlijks" -> FrequentieEnum.JAARLIJKS
-            "maandelijks" -> FrequentieEnum.MAANDELIJKS
-            else -> throw IllegalArgumentException("Invalid frequency: $frequentie")
-        }
-
-        val statusEnum = when (status) {
-            "initieel" -> StatusEnum.INITIEEL
-            "gereed" -> StatusEnum.GEREED
-            "actief" -> StatusEnum.ACTIEF
-            "ingetrokken" -> StatusEnum.INGETROKKEN
-            "geweigerd" -> StatusEnum.GEWEIGERD
-            "verlopen" -> StatusEnum.VERLOPEN
-            else -> throw IllegalArgumentException("Invalid status: $status")
-        }
+        val freqenum = toFreqEnum(frequentie)
+        val statusEnum = toStatusEnum(status)
 
         val result = openProductClient.createProduct(
             baseUrl,
@@ -96,5 +82,67 @@ class OpenProductPlugin(
 
         execution.setVariable(resultPV, result)
         println("Product created with name: $productName saved in the procesvariabele: $resultPV")
+    }
+
+    @PluginAction(
+        key = "update-product",
+        title = "Update product plugin action",
+        description = "Update product plugin action",
+        activityTypes = [ActivityTypeWithEventName.SERVICE_TASK_START],
+    )
+    fun updateProduct(
+        execution: DelegateExecution,
+        @PluginActionProperty productUUID: String,
+        @PluginActionProperty productName: String,
+        @PluginActionProperty productTypeUUID: String,
+        @PluginActionProperty ownerBSN: String,
+        @PluginActionProperty published: Boolean,
+        @PluginActionProperty productPrice: String,
+        @PluginActionProperty frequentie: String,
+        @PluginActionProperty status: String,
+        @PluginActionProperty resultPV: String
+    ) {
+        val requestMap = mutableMapOf<String, Any>()
+
+        if (productUUID.isNotBlank()) requestMap["uuid"] = productUUID
+        if (productName.isNotBlank()) requestMap["naam"] = productName
+        if (productTypeUUID.isNotBlank()) requestMap["producttypeUuid"] = productTypeUUID
+        if (ownerBSN.isNotBlank()) requestMap["eigenaren"] = listOf(mapOf("bsn" to ownerBSN))
+        requestMap["gepubliceerd"] = published
+        if (productPrice.isNotBlank()) requestMap["prijs"] = productPrice
+        if (frequentie.isNotBlank()) requestMap["frequentie"] = toFreqEnum(frequentie)
+        if (status.isNotBlank()) requestMap["status"] = toStatusEnum(status)
+
+        println(requestMap)
+
+        val result = openProductClient.updateProduct(
+            baseUrl,
+            authenticationPluginConfiguration,
+            requestMap
+        )
+
+        execution.setVariable(resultPV, result)
+        println("Product updated with UUID: $productUUID saved in the procesvariabele: $resultPV")
+    }
+
+    fun toFreqEnum(frequentie: String): FrequentieEnum {
+        return when (frequentie) {
+            "eenmalig" -> FrequentieEnum.EENMALIG
+            "jaarlijks" -> FrequentieEnum.JAARLIJKS
+            "maandelijks" -> FrequentieEnum.MAANDELIJKS
+            else -> throw IllegalArgumentException("Invalid frequency: $frequentie")
+        }
+    }
+
+    fun toStatusEnum(status: String): StatusEnum {
+        return when (status) {
+            "initieel" -> StatusEnum.INITIEEL
+            "gereed" -> StatusEnum.GEREED
+            "actief" -> StatusEnum.ACTIEF
+            "ingetrokken" -> StatusEnum.INGETROKKEN
+            "geweigerd" -> StatusEnum.GEWEIGERD
+            "verlopen" -> StatusEnum.VERLOPEN
+            else -> throw IllegalArgumentException("Invalid status: $status")
+        }
     }
 }

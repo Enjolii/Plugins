@@ -1,0 +1,30 @@
+[
+  {
+    "activityId": "StartEvent_1",
+    "activityType": "bpmn:StartEvent:start",
+    "formDefinitionName": "update-product",
+    "viewModelEnabled": false,
+    "formDisplayType": "modal",
+    "formSize": "medium",
+    "subtitles": null,
+    "processLinkType": "form"
+  },
+  {
+    "activityId": "Activity_1sct6lh",
+    "activityType": "bpmn:ServiceTask:start",
+    "pluginConfigurationId": "72125667-5ca8-4426-b91a-b471de5983c0",
+    "pluginActionDefinitionKey": "update-product",
+    "actionProperties": {
+      "productUUID": "doc:/productUUID",
+      "productName": "doc:/productName",
+      "productTypeUUID": "doc:/productTypeUUID",
+      "ownerBSN": "doc:/ownerBSN",
+      "published": "doc:/published",
+      "productPrice": "doc:/productPrice",
+      "frequentie": "doc:/frequentie",
+      "status": "doc:/status",
+      "resultPV": "result"
+    },
+    "processLinkType": "plugin"
+  }
+]

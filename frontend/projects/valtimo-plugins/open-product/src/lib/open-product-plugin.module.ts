@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-import {OpenProductConfigurationComponent} from './components/open-product-configuration/open-product-configuration.component';
+import {
+    OpenProductConfigurationComponent
+} from './components/open-product-configuration/open-product-configuration.component';
 import {CommonModule} from '@angular/common';
 import {FormModule, InputModule, SelectModule} from '@valtimo/components';
 import {NgModule} from '@angular/core';
 import {PluginTranslatePipeModule} from "@valtimo/plugin";
 import {CreateProductConfigurationComponent} from './components/create-product/create-product-configuration.component'
+import {UpdateProductConfigurationComponent} from "./components/update-product/update-product-configuration.component";
 
 @NgModule({
-  declarations: [OpenProductConfigurationComponent, CreateProductConfigurationComponent],
-  imports: [CommonModule, PluginTranslatePipeModule, FormModule, InputModule, SelectModule],
-  exports: [OpenProductConfigurationComponent, CreateProductConfigurationComponent],
+    declarations: [OpenProductConfigurationComponent, CreateProductConfigurationComponent, UpdateProductConfigurationComponent],
+    imports: [CommonModule, PluginTranslatePipeModule, FormModule, InputModule, SelectModule],
+    exports: [OpenProductConfigurationComponent, CreateProductConfigurationComponent, UpdateProductConfigurationComponent],
 })
-export class OpenProductPluginModule {}
+export class OpenProductPluginModule {
+}

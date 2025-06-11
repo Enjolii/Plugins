@@ -2,6 +2,18 @@
   "display": "form",
   "components": [
     {
+      "key": "productUUID",
+      "type": "textfield",
+      "input": true,
+      "label": "ProductUUID",
+      "tableView": true,
+      "attributes": {
+        "data-testid": "create-product-productUUID"
+      },
+      "applyMaskOn": "change",
+      "defaultValue": "e35a76bd-fd48-4196-9012-b5b316155710"
+    },
+    {
       "key": "productName",
       "type": "textfield",
       "input": true,
@@ -36,7 +48,7 @@
     },
     {
       "key": "productPrice",
-      "type": "number",
+      "type": "textfield",
       "input": true,
       "label": "Productprijs",
       "tableView": true,
@@ -63,7 +75,7 @@
           }
         ]
       },
-      "type": "select",
+      "type": "textfield",
       "input": true,
       "label": "Frequentie",
       "tableView": true,
@@ -102,7 +114,7 @@
           }
         ]
       },
-      "type": "select",
+      "type": "textfield",
       "input": true,
       "label": "Status",
       "tableView": true,
@@ -113,14 +125,14 @@
     },
     {
       "key": "published",
-      "type": "checkbox",
+      "type": "textfield",
       "input": true,
       "label": "Published",
       "tableView": false,
       "attributes": {
         "data-testid": "create-product-published"
       },
-      "defaultValue": false
+      "defaultValue": "false"
     },
     {
       "key": "submit",

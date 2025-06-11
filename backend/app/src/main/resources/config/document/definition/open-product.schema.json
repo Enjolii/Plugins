@@ -1,15 +1,22 @@
 {
   "$id": "open-product.schema",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Open Product",
   "type": "object",
+  "title": "Open Product",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "properties": {
-    "productName": {
+    "result": {
       "type": "string"
     },
-    "productTypeUUID": {
-      "type": "string",
-      "format": "uuid"
+    "status": {
+      "enum": [
+        "initieel",
+        "gereed",
+        "actief",
+        "ingetrokken",
+        "geweigerd",
+        "verlopen"
+      ],
+      "type": "string"
     },
     "ownerBSN": {
       "type": "string"
@@ -17,18 +24,24 @@
     "published": {
       "type": "boolean"
     },
+    "frequentie": {
+      "enum": [
+        "eenmalig",
+        "jaarlijks",
+        "maandelijks"
+      ],
+      "type": "string"
+    },
+    "productName": {
+      "type": "string"
+    },
+    "productUUID": {
+      "type": "string"
+    },
     "productPrice": {
       "type": "string"
     },
-    "frequentie": {
-      "type": "string",
-      "enum": ["eenmalig", "jaarlijks", "maandelijks"]
-    },
-    "status": {
-      "type": "string",
-      "enum": ["initieel", "gereed", "actief", "ingetrokken", "geweigerd", "verlopen"]
-    },
-    "result": {
+    "productTypeUUID": {
       "type": "string"
     }
   },
