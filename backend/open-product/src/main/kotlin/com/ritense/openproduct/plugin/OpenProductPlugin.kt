@@ -16,17 +16,14 @@
 
 package com.ritense.openproduct.plugin
 
-import com.ritense.openproduct.client.EigenaarRequest
-import com.ritense.openproduct.client.FrequentieEnum
-import com.ritense.openproduct.client.OpenProductClient
-import com.ritense.openproduct.client.ProductRequest
-import com.ritense.openproduct.client.StatusEnum
+import com.ritense.openproduct.client.*
 import com.ritense.plugin.annotation.Plugin
 import com.ritense.plugin.annotation.PluginAction
 import com.ritense.plugin.annotation.PluginActionProperty
 import com.ritense.plugin.annotation.PluginProperty
 import com.ritense.processlink.domain.ActivityTypeWithEventName
 import com.ritense.tokenauthentication.plugin.TokenAuthenticationPlugin
+import org.camunda.bpm.engine.delegate.DelegateExecution
 
 
 @Plugin(
@@ -51,24 +48,53 @@ class OpenProductPlugin(
         activityTypes = [ActivityTypeWithEventName.SERVICE_TASK_START],
     )
     fun createProduct(
-        @PluginActionProperty message: String
+        execution: DelegateExecution,
+        @PluginActionProperty productName: String,
+        @PluginActionProperty productTypeUUID: String,
+        @PluginActionProperty ownerBSN: String,
+        @PluginActionProperty published: Boolean,
+        @PluginActionProperty productPrice: String,
+        @PluginActionProperty frequentie: String,
+        @PluginActionProperty status: String,
+        @PluginActionProperty resultPV: String,
     ) {
-        openProductClient.createProduct(
+
+        val freqenum = when (frequentie) {
+            "eenmalig" -> FrequentieEnum.EENMALIG
+            "jaarlijks" -> FrequentieEnum.JAARLIJKS
+            "maandelijks" -> FrequentieEnum.MAANDELIJKS
+            else -> throw IllegalArgumentException("Invalid frequency: $frequentie")
+        }
+
+        val statusEnum = when (status) {
+            "initieel" -> StatusEnum.INITIEEL
+            "gereed" -> StatusEnum.GEREED
+            "actief" -> StatusEnum.ACTIEF
+            "ingetrokken" -> StatusEnum.INGETROKKEN
+            "geweigerd" -> StatusEnum.GEWEIGERD
+            "verlopen" -> StatusEnum.VERLOPEN
+            else -> throw IllegalArgumentException("Invalid status: $status")
+        }
+
+        val result = openProductClient.createProduct(
             baseUrl,
             authenticationPluginConfiguration,
             ProductRequest(
-                naam = "test1",
-                producttypeUuid = "9903945d-b639-49da-85ed-7305817f47ad",
+                naam = productName,
+                producttypeUuid = productTypeUUID,
                 eigenaren = listOf(
                     EigenaarRequest(
-                        bsn = "111111110"
+                        bsn = ownerBSN
                     )
                 ),
-                gepubliceerd = true,
-                prijs = "1.00",
-                frequentie = FrequentieEnum.MAANDELIJKS,
-                status = StatusEnum.ACTIEF,
+                gepubliceerd = published,
+                prijs = productPrice,
+                frequentie = freqenum,
+                status = statusEnum,
             )
         )
+
+        execution.setVariable(resultPV, result)
+        println("Product created with name: $productName saved in the procesvariabele: $resultPV")
     }
 }

@@ -6,10 +6,72 @@
     } as obs"
 >
     <v-input
-            name="message"
-            [title]="'message' | pluginTranslate: pluginId | async"
+            name="productName"
+            [title]="'productName' | pluginTranslate: pluginId | async"
             [margin]="true"
-            [defaultValue]="obs.prefill?.message"
+            [defaultValue]="obs.prefill?.productName"
+            [disabled]="obs.disabled"
+            [required]="true"
+    >
+    </v-input>
+    <v-input
+            name="productTypeUUID"
+            [title]="'productTypeUUID' | pluginTranslate: pluginId | async"
+            [margin]="true"
+            [defaultValue]="obs.prefill?.productTypeUUID"
+            [disabled]="obs.disabled"
+            [required]="true"
+    >
+    </v-input>
+    <v-input
+            name="ownerBSN"
+            [title]="'ownerBSN' | pluginTranslate: pluginId | async"
+            [margin]="true"
+            [defaultValue]="obs.prefill?.ownerBSN"
+            [disabled]="obs.disabled"
+            [required]="true"
+    >
+    </v-input>
+    <v-input
+            name="published"
+            [title]="'published' | pluginTranslate: pluginId | async"
+            [margin]="true"
+            [disabled]="obs.disabled"
+            [required]="true"
+    >
+    </v-input>
+    <v-input
+            name="productPrice"
+            [title]="'productPrice' | pluginTranslate: pluginId | async"
+            [margin]="true"
+            [defaultValue]="obs.prefill?.productPrice"
+            [disabled]="obs.disabled"
+            [required]="true"
+    >
+    </v-input>
+    <v-input
+            name="frequentie"
+            [title]="'frequentie' | pluginTranslate: pluginId | async"
+            [margin]="true"
+            [defaultValue]="obs.prefill?.frequentie"
+            [disabled]="obs.disabled"
+            [required]="true"
+    >
+    </v-input>
+    <v-input
+            name="status"
+            [title]="'status' | pluginTranslate: pluginId | async"
+            [margin]="true"
+            [defaultValue]="obs.prefill?.status"
+            [disabled]="obs.disabled"
+            [required]="true"
+    >
+    </v-input>
+    <v-input
+            name="resultPV"
+            [title]="'resultPV' | pluginTranslate: pluginId | async"
+            [margin]="true"
+            [defaultValue]="obs.prefill?.resultPV"
             [disabled]="obs.disabled"
             [required]="true"
     >

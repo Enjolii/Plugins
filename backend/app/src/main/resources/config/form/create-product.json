@@ -1,0 +1,136 @@
+{
+  "display": "form",
+  "components": [
+    {
+      "key": "productName",
+      "type": "textfield",
+      "input": true,
+      "label": "Productnaam",
+      "tableView": true,
+      "attributes": {
+        "data-testid": "create-product-productName"
+      },
+      "defaultValue": "ProductNameHardcoded"
+    },
+    {
+      "key": "productTypeUUID",
+      "type": "textfield",
+      "input": true,
+      "label": "Product Type UUID",
+      "tableView": true,
+      "attributes": {
+        "data-testid": "create-product-productTypeUUID"
+      },
+      "defaultValue": "9903945d-b639-49da-85ed-7305817f47ad"
+    },
+    {
+      "key": "ownerBSN",
+      "type": "textfield",
+      "input": true,
+      "label": "BSN Eigenaar",
+      "tableView": true,
+      "attributes": {
+        "data-testid": "create-product-ownerBSN"
+      },
+      "defaultValue": "111222333"
+    },
+    {
+      "key": "productPrice",
+      "type": "number",
+      "input": true,
+      "label": "Productprijs",
+      "tableView": true,
+      "attributes": {
+        "data-testid": "create-product-productPrice"
+      },
+      "defaultValue": "150"
+    },
+    {
+      "key": "frequentie",
+      "data": {
+        "values": [
+          {
+            "label": "Eenmalig",
+            "value": "eenmalig"
+          },
+          {
+            "label": "Jaarlijks",
+            "value": "jaarlijks"
+          },
+          {
+            "label": "Maandelijks",
+            "value": "maandelijks"
+          }
+        ]
+      },
+      "type": "select",
+      "input": true,
+      "label": "Frequentie",
+      "tableView": true,
+      "attributes": {
+        "data-testid": "create-product-frequentie"
+      },
+      "defaultValue": "maandelijks"
+    },
+    {
+      "key": "status",
+      "data": {
+        "values": [
+          {
+            "label": "Initieel",
+            "value": "initieel"
+          },
+          {
+            "label": "Gereed",
+            "value": "gereed"
+          },
+          {
+            "label": "Actief",
+            "value": "actief"
+          },
+          {
+            "label": "Ingetrokken",
+            "value": "ingetrokken"
+          },
+          {
+            "label": "Geweigerd",
+            "value": "geweigerd"
+          },
+          {
+            "label": "Verlopen",
+            "value": "verlopen"
+          }
+        ]
+      },
+      "type": "select",
+      "input": true,
+      "label": "Status",
+      "tableView": true,
+      "attributes": {
+        "data-testid": "create-product-status"
+      },
+      "defaultValue": "actief"
+    },
+    {
+      "key": "published",
+      "type": "checkbox",
+      "input": true,
+      "label": "Published",
+      "tableView": false,
+      "attributes": {
+        "data-testid": "create-product-published"
+      },
+      "defaultValue": false
+    },
+    {
+      "key": "submit",
+      "type": "button",
+      "block": true,
+      "input": true,
+      "label": "Submit",
+      "tableView": false,
+      "saveOnEnter": false,
+      "showValidations": false
+    }
+  ]
+}

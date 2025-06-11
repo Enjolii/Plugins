@@ -1,6 +1,6 @@
 [
   {
-    "processDefinitionKey": "test",
+    "processDefinitionKey": "OpenProduct_Create",
     "canInitializeDocument": true,
     "startableByUser": false
   }

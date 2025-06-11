@@ -1,11 +1,35 @@
 {
   "$id": "open-product.schema",
-  "type": "object",
-  "title": "Open Product",
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Open Product",
+  "type": "object",
   "properties": {
+    "productName": {
+      "type": "string"
+    },
+    "productTypeUUID": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "ownerBSN": {
+      "type": "string"
+    },
+    "published": {
+      "type": "boolean"
+    },
+    "productPrice": {
+      "type": "string"
+    },
+    "frequentie": {
+      "type": "string",
+      "enum": ["eenmalig", "jaarlijks", "maandelijks"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["initieel", "gereed", "actief", "ingetrokken", "geweigerd", "verlopen"]
+    },
     "result": {
-      "Type": "string"
+      "type": "string"
     }
   },
   "additionalProperties": false
