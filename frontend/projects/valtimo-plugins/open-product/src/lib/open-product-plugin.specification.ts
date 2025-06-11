@@ -21,6 +21,7 @@ import {OPEN_PRODUCT_PLUGIN_LOGO_BASE64} from './assets';
 import {PluginSpecification} from "@valtimo/plugin";
 import {CreateProductConfigurationComponent} from "./components/create-product/create-product-configuration.component";
 import {UpdateProductConfigurationComponent} from "./components/update-product/update-product-configuration.component";
+import {DeleteProductConfigurationComponent} from "./components/delete-product/delete-product-configuration.component";
 
 
 const openProductPluginSpecification: PluginSpecification = {
@@ -34,6 +35,7 @@ const openProductPluginSpecification: PluginSpecification = {
          */
         'create-product': CreateProductConfigurationComponent,
         'update-product': UpdateProductConfigurationComponent,
+        'delete-product': DeleteProductConfigurationComponent
     },
 
     pluginTranslations: {

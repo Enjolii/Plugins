@@ -25,7 +25,6 @@ import com.ritense.processlink.domain.ActivityTypeWithEventName
 import com.ritense.tokenauthentication.plugin.TokenAuthenticationPlugin
 import org.camunda.bpm.engine.delegate.DelegateExecution
 
-
 @Plugin(
     key = "openproduct",
     title = "Open Product",
@@ -49,39 +48,45 @@ class OpenProductPlugin(
     )
     fun createProduct(
         execution: DelegateExecution,
-        @PluginActionProperty productName: String,
+        @PluginActionProperty productNaam: String,
         @PluginActionProperty productTypeUUID: String,
         @PluginActionProperty ownerBSN: String,
         @PluginActionProperty published: Boolean,
         @PluginActionProperty productPrice: String,
+        @PluginActionProperty eigenaarBSN: String,
+        @PluginActionProperty gepubliceerd: Boolean,
+        @PluginActionProperty productPrijs: String,
         @PluginActionProperty frequentie: String,
         @PluginActionProperty status: String,
-        @PluginActionProperty resultPV: String,
+        @PluginActionProperty resultaatPV: String,
     ) {
 
         val freqenum = toFreqEnum(frequentie)
         val statusEnum = toStatusEnum(status)
 
-        val result = openProductClient.createProduct(
+        println(eigenaarData)
+
+        val resultaat = openProductClient.createProduct(
             baseUrl,
             authenticationPluginConfiguration,
             ProductRequest(
-                naam = productName,
+                naam = productNaam,
                 producttypeUuid = productTypeUUID,
                 eigenaren = listOf(
                     EigenaarRequest(
-                        bsn = ownerBSN
+                        bsn = eigenaarBSN
                     )
                 ),
-                gepubliceerd = published,
-                prijs = productPrice,
+                gepubliceerd = gepubliceerd,
+                prijs = productPrijs,
                 frequentie = freqenum,
                 status = statusEnum,
             )
         )
 
-        execution.setVariable(resultPV, result)
-        println("Product created with name: $productName saved in the procesvariabele: $resultPV")
+        println("Resultaat van aanmaken product: $resultaat")
+        execution.setVariable(resultaatPV, resultaat)
+        println("Product aangemaakt met de naam: $productNaam, resultaat opgeslagen in de procesvariabele: $resultaatPV")
     }
 
     @PluginAction(
@@ -93,23 +98,23 @@ class OpenProductPlugin(
     fun updateProduct(
         execution: DelegateExecution,
         @PluginActionProperty productUUID: String,
-        @PluginActionProperty productName: String,
+        @PluginActionProperty productNaam: String,
         @PluginActionProperty productTypeUUID: String,
-        @PluginActionProperty ownerBSN: String,
-        @PluginActionProperty published: Boolean,
-        @PluginActionProperty productPrice: String,
+        @PluginActionProperty eigenaarBSN: String,
+        @PluginActionProperty gepubliceerd: Boolean,
+        @PluginActionProperty productPrijs: String,
         @PluginActionProperty frequentie: String,
         @PluginActionProperty status: String,
-        @PluginActionProperty resultPV: String
+        @PluginActionProperty resultaatPV: String
     ) {
         val requestMap = mutableMapOf<String, Any>()
 
-        if (productUUID.isNotBlank()) requestMap["uuid"] = productUUID
-        if (productName.isNotBlank()) requestMap["naam"] = productName
+        requestMap["uuid"] = productUUID
+        if (productNaam.isNotBlank()) requestMap["naam"] = productNaam
         if (productTypeUUID.isNotBlank()) requestMap["producttypeUuid"] = productTypeUUID
-        if (ownerBSN.isNotBlank()) requestMap["eigenaren"] = listOf(mapOf("bsn" to ownerBSN))
-        requestMap["gepubliceerd"] = published
-        if (productPrice.isNotBlank()) requestMap["prijs"] = productPrice
+        if (eigenaarBSN.isNotBlank()) requestMap["eigenaren"] = listOf(mapOf("bsn" to eigenaarBSN))
+        requestMap["gepubliceerd"] = gepubliceerd
+        if (productPrijs.isNotBlank()) requestMap["prijs"] = productPrijs
         if (frequentie.isNotBlank()) requestMap["frequentie"] = toFreqEnum(frequentie)
         if (status.isNotBlank()) requestMap["status"] = toStatusEnum(status)
 
@@ -121,8 +126,29 @@ class OpenProductPlugin(
             requestMap
         )
 
+        execution.setVariable(resultaatPV, result)
+        println("Product geupdate met UUID: $productUUID, resultaat opgeslagen in de procesvariabele: $resultaatPV")
+    }
+
+    @PluginAction(
+        key = "delete-product",
+        title = "Delete product plugin action",
+        description = "Delete product plugin action",
+        activityTypes = [ActivityTypeWithEventName.SERVICE_TASK_START],
+    )
+    fun deleteProduct(
+        execution: DelegateExecution,
+        @PluginActionProperty productUUID: String,
+        @PluginActionProperty resultPV: String
+    ) {
+        val result = openProductClient.deleteProduct(
+            baseUrl,
+            authenticationPluginConfiguration,
+            productUUID
+        )
+
         execution.setVariable(resultPV, result)
-        println("Product updated with UUID: $productUUID saved in the procesvariabele: $resultPV")
+        println("Product verwijderd met UUID: $productUUID, resultaat opgeslagen in procesvariabele: $resultPV")
     }
 
     fun toFreqEnum(frequentie: String): FrequentieEnum {
@@ -130,7 +156,7 @@ class OpenProductPlugin(
             "eenmalig" -> FrequentieEnum.EENMALIG
             "jaarlijks" -> FrequentieEnum.JAARLIJKS
             "maandelijks" -> FrequentieEnum.MAANDELIJKS
-            else -> throw IllegalArgumentException("Invalid frequency: $frequentie")
+            else -> throw IllegalArgumentException("Ongeldige frequentie: $frequentie")
         }
     }
 
@@ -142,7 +168,7 @@ class OpenProductPlugin(
             "ingetrokken" -> StatusEnum.INGETROKKEN
             "geweigerd" -> StatusEnum.GEWEIGERD
             "verlopen" -> StatusEnum.VERLOPEN
-            else -> throw IllegalArgumentException("Invalid status: $status")
+            else -> throw IllegalArgumentException("Ongeldige status: $status")
         }
     }
 }

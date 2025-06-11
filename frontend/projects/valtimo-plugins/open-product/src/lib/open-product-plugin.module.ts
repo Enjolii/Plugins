@@ -18,16 +18,17 @@ import {
     OpenProductConfigurationComponent
 } from './components/open-product-configuration/open-product-configuration.component';
 import {CommonModule} from '@angular/common';
-import {FormModule, InputModule, SelectModule} from '@valtimo/components';
+import {CarbonMultiInputModule, FormModule, InputModule, SelectModule} from '@valtimo/components';
 import {NgModule} from '@angular/core';
 import {PluginTranslatePipeModule} from "@valtimo/plugin";
 import {CreateProductConfigurationComponent} from './components/create-product/create-product-configuration.component'
 import {UpdateProductConfigurationComponent} from "./components/update-product/update-product-configuration.component";
+import {DeleteProductConfigurationComponent} from "./components/delete-product/delete-product-configuration.component";
 
 @NgModule({
-    declarations: [OpenProductConfigurationComponent, CreateProductConfigurationComponent, UpdateProductConfigurationComponent],
-    imports: [CommonModule, PluginTranslatePipeModule, FormModule, InputModule, SelectModule],
-    exports: [OpenProductConfigurationComponent, CreateProductConfigurationComponent, UpdateProductConfigurationComponent],
+    declarations: [OpenProductConfigurationComponent, CreateProductConfigurationComponent, UpdateProductConfigurationComponent, DeleteProductConfigurationComponent],
+    imports: [CommonModule, PluginTranslatePipeModule, FormModule, InputModule, SelectModule, CarbonMultiInputModule],
+    exports: [OpenProductConfigurationComponent, CreateProductConfigurationComponent, UpdateProductConfigurationComponent, DeleteProductConfigurationComponent],
 })
 export class OpenProductPluginModule {
 }

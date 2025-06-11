@@ -55,6 +55,22 @@ class OpenProductClient() {
         return result.body
     }
 
+    fun deleteProduct(
+        baseUrl: String,
+        authenticationPlugin: TokenAuthenticationPlugin,
+        uuid: String
+    ): String? {
+        val restClient = getRestclient(baseUrl, authenticationPlugin)
+
+        val response = restClient.delete()
+            .uri("/producten/$uuid")
+            .retrieve()
+
+        val result = response.toEntity(String::class.java)
+            ?: throw IllegalStateException("Failed to delete product")
+
+        return result.body
+    }
 
     fun getRestclient(baseUrl: String, authenticationPlugin: TokenAuthenticationPlugin): RestClient {
         return authenticationPlugin.applyAuth(RestClient.builder())
