@@ -32,6 +32,7 @@
             [required]="true"
     >
     </v-input>
+
     <valtimo-carbon-multi-input
             name="eigenaarData"
             [title]="'eigenaarData' | pluginTranslate: pluginId | async"
@@ -41,10 +42,8 @@
             [margin]="true"
             [required]="false"
             [tooltip]="'eigenaarDataTooltip' | pluginTranslate: pluginId | async"
-            [minimumAmountOfRows]="0"
-            [initialAmountOfRows]="0"
+            [minimumAmountOfRows]="1"
     ></valtimo-carbon-multi-input>
-
 
     <v-input
             name="productPrijs"
@@ -77,7 +76,7 @@
             name="gepubliceerd"
             [title]="'gepubliceerd' | pluginTranslate: pluginId | async"
             [margin]="true"
-            [defaultValue]="obs.prefill?.gepubliceerd"
+            [defaultValue]="obs.prefill?.gepubliceerd.toString()"
             [disabled]="obs.disabled"
             [required]="true"
     >
