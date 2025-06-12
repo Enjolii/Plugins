@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FunctionConfigurationComponent} from '@valtimo/plugin';
-import {BehaviorSubject, combineLatest, Observable, Subscription, take, tap} from 'rxjs';
+import {BehaviorSubject, combineLatest, Observable, Subscription, take} from 'rxjs';
 import {CreateProductConfig} from './models/create-product-config';
 
 @Component({
@@ -10,8 +10,7 @@ import {CreateProductConfig} from './models/create-product-config';
 })
 export class CreateProductConfigurationComponent
     // The component explicitly implements the FunctionConfigurationComponent interface
-    implements FunctionConfigurationComponent, OnInit, OnDestroy
-{
+    implements FunctionConfigurationComponent, OnInit, OnDestroy {
     @Input() save$: Observable<void>;
     @Input() disabled$: Observable<boolean>;
     @Input() pluginId: string;
@@ -36,10 +35,11 @@ export class CreateProductConfigurationComponent
     formValueChange(formValue: CreateProductConfig): void {
         this.formValue$.next(formValue);
         this.handleValid(formValue);
+
     }
 
     private handleValid(formValue: CreateProductConfig): void {
-        const valid = !!(formValue.productTypeUUID && formValue.ownerBSN && formValue.productPrice && formValue.frequentie && formValue.resultPV);
+        const valid = !!(formValue.productTypeUUID && formValue.eigenaarBSN && formValue.productPrijs && formValue.frequentie && formValue.resultaatPV);
 
         this.valid$.next(valid);
         this.valid.emit(valid);

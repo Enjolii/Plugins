@@ -15,14 +15,14 @@
     "pluginConfigurationId": "72125667-5ca8-4426-b91a-b471de5983c0",
     "pluginActionDefinitionKey": "create-product",
     "actionProperties": {
-      "productName": "doc:/productName",
+      "productNaam": "doc:/productName",
       "productTypeUUID": "doc:/productTypeUUID",
-      "ownerBSN": "doc:/ownerBSN",
-      "published": "doc:/published",
-      "productPrice": "doc:/productPrice",
+      "eigenaarBSN": "doc:/ownerBSN",
+      "gepubliceerd": "doc:/published",
+      "productPrijs": "doc:/productPrice",
       "frequentie": "doc:/frequentie",
       "status": "doc:/status",
-      "resultPV": "result"
+      "resultaatPV": "result"
     },
     "processLinkType": "plugin"
   }

@@ -1,6 +1,6 @@
 interface DeleteProductConfig {
     productUUID: string;
-    resultPV: string;
+    resultaatPV: string;
 }
 
 export {DeleteProductConfig};

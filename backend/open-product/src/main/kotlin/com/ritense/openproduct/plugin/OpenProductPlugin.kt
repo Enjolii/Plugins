@@ -16,13 +16,20 @@
 
 package com.ritense.openproduct.plugin
 
+import com.fasterxml.jackson.core.JsonPointer
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.module.kotlin.convertValue
+import com.ritense.document.domain.patch.JsonPatchService
 import com.ritense.openproduct.client.*
 import com.ritense.plugin.annotation.Plugin
 import com.ritense.plugin.annotation.PluginAction
 import com.ritense.plugin.annotation.PluginActionProperty
 import com.ritense.plugin.annotation.PluginProperty
+import com.ritense.plugin.service.PluginService
 import com.ritense.processlink.domain.ActivityTypeWithEventName
 import com.ritense.tokenauthentication.plugin.TokenAuthenticationPlugin
+import com.ritense.valtimo.contract.json.patch.JsonPatchBuilder
+import com.ritense.valueresolver.ValueResolverService
 import org.camunda.bpm.engine.delegate.DelegateExecution
 
 @Plugin(
@@ -31,8 +38,11 @@ import org.camunda.bpm.engine.delegate.DelegateExecution
     description = "Plugin for interacting with the Open Product API"
 )
 class OpenProductPlugin(
-    val openProductClient: OpenProductClient
+    pluginService: PluginService,
+    private val openProductClient: OpenProductClient,
+    private val valueResolverService: ValueResolverService
 ) {
+    private val objectMapper = pluginService.getObjectMapper()
 
     @PluginProperty(key = "baseUrl", secret = false, required = true)
     lateinit var baseUrl: String
@@ -51,12 +61,19 @@ class OpenProductPlugin(
         @PluginActionProperty productNaam: String,
         @PluginActionProperty productTypeUUID: String,
         @PluginActionProperty eigenaarBSN: String,
+        @PluginActionProperty eigenaarData: List<DataBindingConfig>?,
         @PluginActionProperty gepubliceerd: Boolean,
         @PluginActionProperty productPrijs: String,
         @PluginActionProperty frequentie: String,
         @PluginActionProperty status: String,
         @PluginActionProperty resultaatPV: String,
     ) {
+        println(
+            if (eigenaarData !== null) getEigenaarData(
+                eigenaarData,
+                execution.businessKey
+            ) else "Geen eigenaarData opgegeven"
+        )
 
         val freqenum = toFreqEnum(frequentie)
         val statusEnum = toStatusEnum(status)
@@ -134,7 +151,7 @@ class OpenProductPlugin(
     fun deleteProduct(
         execution: DelegateExecution,
         @PluginActionProperty productUUID: String,
-        @PluginActionProperty resultPV: String
+        @PluginActionProperty resultaatPV: String
     ) {
         val result = openProductClient.deleteProduct(
             baseUrl,
@@ -142,8 +159,8 @@ class OpenProductPlugin(
             productUUID
         )
 
-        execution.setVariable(resultPV, result)
-        println("Product verwijderd met UUID: $productUUID, resultaat opgeslagen in procesvariabele: $resultPV")
+        execution.setVariable(resultaatPV, "Product verwijderd met UUID: $productUUID")
+        println("Product verwijderd met UUID: $productUUID, resultaat opgeslagen in procesvariabele: $resultaatPV")
     }
 
     fun toFreqEnum(frequentie: String): FrequentieEnum {
@@ -166,4 +183,38 @@ class OpenProductPlugin(
             else -> throw IllegalArgumentException("Ongeldige status: $status")
         }
     }
+
+    private fun getEigenaarData(
+        keyValueMap: List<DataBindingConfig>,
+        documentId: String
+    ): JsonNode {
+        val resolvedValuesMap = valueResolverService.resolveValues(
+            documentId, keyValueMap.map { it.value }
+        )
+
+        if (keyValueMap.size != resolvedValuesMap.size) {
+            val failedValues = keyValueMap
+                .filter { !resolvedValuesMap.containsKey(it.value) }
+                .joinToString(", ") { "'${it.key}' = '${it.value}'" }
+            throw IllegalArgumentException(
+                "Error in case: '${documentId}'. Failed to resolve values: $failedValues".trimMargin()
+            )
+        }
+
+        val objectDataMap = keyValueMap.associate { it.key to resolvedValuesMap[it.value] }
+
+        val objectData = objectMapper.createObjectNode()
+        val jsonPatchBuilder = JsonPatchBuilder()
+
+        objectDataMap.forEach {
+            val path = JsonPointer.valueOf(it.key)
+            val valueNode = objectMapper.valueToTree<JsonNode>(it.value)
+            jsonPatchBuilder.addJsonNodeValue(objectData, path, valueNode)
+        }
+
+        JsonPatchService.apply(jsonPatchBuilder.build(), objectData)
+
+        return objectMapper.convertValue(objectData)
+    }
+
 }

@@ -16,14 +16,14 @@
     "pluginActionDefinitionKey": "update-product",
     "actionProperties": {
       "productUUID": "doc:/productUUID",
-      "productName": "doc:/productName",
+      "productNaam": "doc:/productName",
       "productTypeUUID": "doc:/productTypeUUID",
-      "ownerBSN": "doc:/ownerBSN",
-      "published": "doc:/published",
-      "productPrice": "doc:/productPrice",
+      "eigenaarBSN": "doc:/ownerBSN",
+      "gepubliceerd": "doc:/published",
+      "productPrijs": "doc:/productPrice",
       "frequentie": "doc:/frequentie",
       "status": "doc:/status",
-      "resultPV": "result"
+      "resultaatPV": "result"
     },
     "processLinkType": "plugin"
   }
