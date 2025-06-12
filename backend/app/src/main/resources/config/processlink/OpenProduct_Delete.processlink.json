@@ -2,7 +2,7 @@
   {
     "activityId": "StartEvent_1",
     "activityType": "bpmn:StartEvent:start",
-    "formDefinitionName": "create-product",
+    "formDefinitionName": "delete-product",
     "viewModelEnabled": false,
     "formDisplayType": "modal",
     "formSize": "medium",
@@ -13,15 +13,9 @@
     "activityId": "Activity_1sct6lh",
     "activityType": "bpmn:ServiceTask:start",
     "pluginConfigurationId": "72125667-5ca8-4426-b91a-b471de5983c0",
-    "pluginActionDefinitionKey": "create-product",
+    "pluginActionDefinitionKey": "delete-product",
     "actionProperties": {
-      "productNaam": "doc:/productName",
-      "productTypeUUID": "doc:/productTypeUUID",
-      "eigenaarBSN": "doc:/ownerBSN",
-      "gepubliceerd": "doc:/published",
-      "productPrijs": "doc:/productPrice",
-      "frequentie": "doc:/frequentie",
-      "status": "doc:/status",
+      "productUUID": "doc:/productUUID",
       "resultaatPV": "result"
     },
     "processLinkType": "plugin"

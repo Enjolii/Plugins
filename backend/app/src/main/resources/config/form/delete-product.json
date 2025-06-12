@@ -1,0 +1,27 @@
+{
+  "display": "form",
+  "components": [
+    {
+      "key": "productUUID",
+      "type": "textfield",
+      "input": true,
+      "label": "ProductUUID",
+      "tableView": true,
+      "applyMaskOn": "change",
+      "attributes": {
+        "data-testid": "delete-product-productUUID"
+      }
+    },
+    {
+      "key": "submit",
+      "type": "button",
+      "block": true,
+      "input": true,
+      "label": "Submit",
+      "tableView": false,
+      "saveOnEnter": false,
+      "showValidations": false,
+      "disableOnInvalid": true
+    }
+  ]
+}

@@ -14,20 +14,9 @@
  * limitations under the License.
  */
 
-package com.ritense.openproduct.plugin
+package com.ritense.openproduct.client
 
-import com.ritense.openproduct.client.OpenProductClient
-import com.ritense.plugin.PluginFactory
-import com.ritense.plugin.service.PluginService
-import com.ritense.valueresolver.ValueResolverService
-
-class OpenProductPluginFactory(
-    pluginService: PluginService,
-    val openProductClient: OpenProductClient,
-    val valueResolverService: ValueResolverService
-) : PluginFactory<OpenProductPlugin>(pluginService) {
-
-    override fun create(): OpenProductPlugin {
-        return OpenProductPlugin(pluginService, openProductClient, valueResolverService)
-    }
-}
+class DataBindingConfig(
+    val key: String,
+    val value: String
+)
