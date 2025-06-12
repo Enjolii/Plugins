@@ -36,6 +36,7 @@ export class CreateProductConfigurationComponent
         this.formValue$.next(formValue);
         this.handleValid(formValue);
 
+        console.log(formValue);
     }
 
     private handleValid(formValue: CreateProductConfig): void {

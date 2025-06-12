@@ -125,7 +125,7 @@
     },
     {
       "key": "published",
-      "type": "textfield",
+      "type": "checkbox",
       "input": true,
       "label": "Published",
       "tableView": false,
