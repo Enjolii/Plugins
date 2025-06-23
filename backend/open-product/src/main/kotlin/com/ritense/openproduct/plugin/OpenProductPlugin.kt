@@ -68,12 +68,12 @@ class OpenProductPlugin(
         @PluginActionProperty status: String,
         @PluginActionProperty resultaatPV: String,
     ) {
-        println(
-            if (eigenaarData !== null) getEigenaarData(
-                eigenaarData,
-                execution.businessKey
-            ) else "Geen eigenaarData opgegeven"
-        )
+//        println(
+//            if (eigenaarData !== null) getEigenaarData(
+//                eigenaarData,
+//                execution.businessKey
+//            ) else "Geen eigenaarData opgegeven"
+//        )
 
         val freqenum = toFreqEnum(frequentie)
         val statusEnum = toStatusEnum(status)
