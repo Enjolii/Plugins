@@ -43,6 +43,29 @@
     },
     "productTypeUUID": {
       "type": "string"
+    },
+    "eigenaar": {
+      "type": "object",
+      "properties": {
+        "eigenaren": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "bsn": {
+          "type": "string"
+        },
+        "klantnummer": {
+          "type": "string"
+        },
+        "vestigingsnummer": {
+          "type": "string"
+        },
+        "kvkNummer": {
+          "type": "string"
+        }
+      }
     }
   },
   "additionalProperties": false
