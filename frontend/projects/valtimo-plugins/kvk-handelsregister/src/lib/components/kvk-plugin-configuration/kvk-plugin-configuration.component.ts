@@ -24,15 +24,11 @@ export class KvkPluginConfigurationComponent
     // If the configuration is valid, output a configuration of the type SuwinetPluginConfig
     @Output() configuration: EventEmitter<Config> =
         new EventEmitter<Config>();
-
-    private saveSubscription!: Subscription;
-
-    private readonly formValue$ = new BehaviorSubject<Config | null>(null);
-    private readonly valid$ = new BehaviorSubject<boolean>(false);
-
     readonly authenticationPluginSelectItems$: Observable<Array<{ id: string; text: string }>> =
         combineLatest([
-            this.pluginManagementService.getPluginConfigurationsByCategory('suwinet'),
+            this.pluginManagementService.getPluginConfigurationsByPluginDefinitionKey(
+                'kvk-handelsregister-auth'
+            ),
             this.translateService.stream('key'),
         ]).pipe(
             map(([configurations]) =>
@@ -45,6 +41,9 @@ export class KvkPluginConfigurationComponent
                 }))
             )
         );
+    private saveSubscription!: Subscription;
+    private readonly formValue$ = new BehaviorSubject<Config | null>(null);
+    private readonly valid$ = new BehaviorSubject<boolean>(false);
 
     constructor(
         private readonly pluginManagementService: PluginManagementService,
@@ -70,7 +69,6 @@ export class KvkPluginConfigurationComponent
         // The configuration is valid when a configuration title and url are defined
         const valid = !!(
             formValue.configurationTitle &&
-            formValue.apikey &&
             formValue.handelsregisterBaseUrl
         );
 

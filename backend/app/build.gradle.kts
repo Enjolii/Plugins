@@ -21,6 +21,7 @@ dependencies {
     implementation(project(":backend:externe-klanttaak"))
     implementation(project(":backend:freemarker"))
     implementation(project(":backend:kvk-handelsregister"))
+    implementation(project(":backend:kvk-handelsregister-auth"))
     implementation(project(":backend:mTLS-SSLContext"))
     implementation(project(":backend:notify-nl"))
     implementation(project(":backend:object-management"))

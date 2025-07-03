@@ -20,6 +20,7 @@ include(
     "backend:xential",
     "backend:hugging-face",
     "backend:kvk-handelsregister",
+    "backend:kvk-handelsregister-auth",
     "frontend",
 )
 

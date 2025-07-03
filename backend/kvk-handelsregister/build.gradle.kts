@@ -29,6 +29,7 @@ dependencies {
     implementation("com.ritense.valtimo:plugin-valtimo")
     implementation("com.ritense.valtimo:value-resolver")
     implementation("com.ritense.valtimo:document")
+    implementation(project(":backend:kvk-handelsregister-auth"))
 
     implementation("org.springframework.boot:spring-boot-starter-webflux")
 

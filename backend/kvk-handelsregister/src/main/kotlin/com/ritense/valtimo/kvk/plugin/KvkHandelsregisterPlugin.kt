@@ -7,7 +7,7 @@ import com.ritense.plugin.annotation.PluginAction
 import com.ritense.plugin.annotation.PluginActionProperty
 import com.ritense.plugin.annotation.PluginProperty
 import com.ritense.processlink.domain.ActivityTypeWithEventName
-import com.ritense.valtimo.kvk.client.KvkHandelsregisterClientConfig
+import com.ritense.kvkauthentication.plugin.KvkHandelsregisterAuthPlugin
 import com.ritense.valtimo.kvk.service.KvkHandelsregisterService
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.camunda.bpm.engine.delegate.DelegateExecution
@@ -23,16 +23,10 @@ class KvkHandelsregisterPlugin(
     private val kvkHandelsregisterService: KvkHandelsregisterService
 ) {
     @PluginProperty(key = "handelsregisterBaseUrl", secret = false, required = true)
-    lateinit var handelsregisterBaseUrl: URI
+    lateinit var handelsregisterBaseUrl: String
 
-    @PluginProperty(key = "apikey", secret = false, required = true)
-    lateinit var apikey: String
-
-    @PluginProperty(key = "connectionTimeout", secret = false, required = false)
-    var connectionTimeout: Int? = 10000
-
-    @PluginProperty(key = "responseTimeout", secret = false, required = false)
-    var responseTimeout: Int? = 10000
+    @PluginProperty(key = "authenticationPluginConfiguration", secret = false)
+    lateinit var authenticationPluginConfiguration: KvkHandelsregisterAuthPlugin
 
     @PluginAction(
         key = "zoeken-op-kvk-nummer",
@@ -43,6 +37,7 @@ class KvkHandelsregisterPlugin(
     fun handelsregisterZoeken(
         @PluginActionProperty kvkNummer: String,
         @PluginActionProperty resultProcessVariableName: String,
+        authenticationPluginConfiguration: KvkHandelsregisterAuthPlugin,
         execution: DelegateExecution
     ) {
 
@@ -55,8 +50,9 @@ class KvkHandelsregisterPlugin(
 
         try {
             kvkHandelsregisterService.zoeken(
-                getHandelsregisterClientConfig(),
-                kvkNummer
+                handelsregisterBaseUrl,
+                kvkNummer,
+                authenticationPluginConfiguration
             ).let {
                 execution.processInstance.setVariable(
                     resultProcessVariableName, objectMapper.convertValue(it)
@@ -66,14 +62,6 @@ class KvkHandelsregisterPlugin(
             logger.info { "Error zoeken ${e.message}" }
         }
     }
-
-    private fun getHandelsregisterClientConfig() =
-        KvkHandelsregisterClientConfig(
-            handelsregisterBaseUrl = handelsregisterBaseUrl.toASCIIString(),
-            apikey = apikey,
-            connectionTimeout = connectionTimeout,
-            responseTimeout = responseTimeout
-        )
 
     private fun String.isValidKvkNumber() = kvkRegex.matches(this)
 

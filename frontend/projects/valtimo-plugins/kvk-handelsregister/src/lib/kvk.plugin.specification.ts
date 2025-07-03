@@ -43,7 +43,8 @@ const kvkPluginSpecification: PluginSpecification = {
             connectionTimeout: 'Request connection timeout in milliseconden',
             responseTimeout: 'Request response timeout in milliseconden',
             apikey: 'apikey',
-            'zoeken-op-kvk-nummer': 'Zoeken op Kvk nummer'
+            'zoeken-op-kvk-nummer': 'Zoeken op Kvk nummer',
+            authenticationPluginConfiguration: 'Authenticatie plugin configuratie die gebruikt wordt voor de authenticatie',
         },
         en: {
             configurationTitle: 'Configuration name',
@@ -60,7 +61,8 @@ const kvkPluginSpecification: PluginSpecification = {
             connectionTimeout: 'Request connection timeout in milliseconds',
             responseTimeout: 'Request response timeout in milliseconds',
             apikey: 'apikey',
-            'zoeken-op-kvk-nummer': 'find Kvk nummer'
+            'zoeken-op-kvk-nummer': 'find Kvk nummer',
+            authenticationPluginConfiguration: 'Authentication plugin configuration that is used for the authentication',
         }
     }
 };
