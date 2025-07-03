@@ -2,9 +2,7 @@ import {PluginConfigurationData} from '@valtimo/plugin';
 
 interface Config extends PluginConfigurationData {
     handelsregisterBaseUrl: string;
-    apikey: string;
-    connectionTimeout: number;
-    responseTimeout: number;
+    authenticationPluginConfiguration: string;
 }
 
 interface ZoekenConfig {

@@ -2,16 +2,15 @@ package com.ritense.valtimo.kvk.plugin
 
 import com.fasterxml.jackson.module.kotlin.convertValue
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.ritense.kvkauthentication.plugin.KvkHandelsregisterAuthPlugin
 import com.ritense.plugin.annotation.Plugin
 import com.ritense.plugin.annotation.PluginAction
 import com.ritense.plugin.annotation.PluginActionProperty
 import com.ritense.plugin.annotation.PluginProperty
 import com.ritense.processlink.domain.ActivityTypeWithEventName
-import com.ritense.kvkauthentication.plugin.KvkHandelsregisterAuthPlugin
 import com.ritense.valtimo.kvk.service.KvkHandelsregisterService
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.camunda.bpm.engine.delegate.DelegateExecution
-import java.net.URI
 
 @Plugin(
     key = "kvk-handelsregister",
@@ -25,7 +24,7 @@ class KvkHandelsregisterPlugin(
     @PluginProperty(key = "handelsregisterBaseUrl", secret = false, required = true)
     lateinit var handelsregisterBaseUrl: String
 
-    @PluginProperty(key = "authenticationPluginConfiguration", secret = false)
+    @PluginProperty(key = "authenticationPluginConfiguration", secret = false, required = true)
     lateinit var authenticationPluginConfiguration: KvkHandelsregisterAuthPlugin
 
     @PluginAction(
@@ -37,7 +36,6 @@ class KvkHandelsregisterPlugin(
     fun handelsregisterZoeken(
         @PluginActionProperty kvkNummer: String,
         @PluginActionProperty resultProcessVariableName: String,
-        authenticationPluginConfiguration: KvkHandelsregisterAuthPlugin,
         execution: DelegateExecution
     ) {
 

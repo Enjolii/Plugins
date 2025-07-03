@@ -33,8 +33,6 @@ class KvkHandelsregisterAuthPlugin : ApikeyAuthentication {
     lateinit var apikey: String
 
     override fun applyAuth(builder: RestClient.Builder): RestClient.Builder {
-        println("hallo: $apikey")
-
         return builder.defaultHeaders { headers ->
             headers.set("apikey", apikey)
         }
